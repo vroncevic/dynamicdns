@@ -16,6 +16,7 @@ UTIL_LOG=$UTIL/log
 . $UTIL/bin/checkprocess.sh
 . $UTIL/bin/loadutilconf.sh
 . $UTIL/bin/logging.sh
+. $UTIL/bin/sendmail.sh
 . $UTIL/bin/usage.sh
 . $UTIL/bin/devel.sh
 
@@ -45,11 +46,11 @@ TOOL_DBG="false"
 # @brief   Main function 
 # @param   Value optional help
 # @exitval Function __dyndns exit with integer value
-#			0   - success operation 
-#			128 - running help
-#			129 - missing config file
-#			130 - missing ddclient tool
-#			131 - process is already running
+#			0   - tool finished with success operation 
+#			128 - failed to load tool script configuration from file
+#			129 - failed to load tool script utilities configuration from file
+#			130 - process is already running
+#			131 - missing external tool ssclient
 #
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -60,17 +61,29 @@ function __dyndns() {
 	local HELP=$1
 	if [ "$HELP" == "help" ]; then
 		__usage $DYNDNS_USAGE
-		exit 128
+		exit 0
 	fi
 	local FUNC=${FUNCNAME[0]}
 	local MSG=""
 	if [ "$TOOL_DBG" == "true" ]; then
-		MSG="Start dynamic dns client"
+		MSG="Starting dynamic dns client"
 		printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
+	fi
+	declare -A configdyndns=()
+	__loadconf $DYNDNS_CFG configdyndns
+	local STATUS=$?
+	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+		MSG="Failed to load tool script configuration"
+		if [ "$TOOL_DBG" == "true" ]; then
+			printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
+		else
+			printf "$SEND" "[$DYNDNS_TOOL]" "$MSG"
+		fi
+		exit 128
 	fi
 	declare -A cfgdydns=()
 	__loadutilconf $DYNDNS_UTIL_CFG cfgdydns
-	local STATUS=$?
+	STATUS=$?
 	if [ "$STATUS" -eq "$SUCCESS" ]; then
 		__checktool "${cfgdydns[DDCLIENT_PATH]}"
 		STATUS=$?
@@ -84,25 +97,24 @@ function __dyndns() {
 				fi
 				exit 0
 			fi
-			exit 131
+			exit 130
 		fi
-		LOG[FLAG]="error"
-		LOG[MSG]="Check tool [${cfgdydns[DDCLIENT_PATH]}]"
-		__logging $LOG
-		STATUS=$?
-		if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
-			MSG="${LOG[MSG]}"
-			printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
+		MSG="Missing external tool ${cfgdydns[DDCLIENT_PATH]}"
+		if [ "${configdyndns[LOGGING]}" == "true" ]; then
+			LOG[MSG]=$MSG
+			LOG[FLAG]="error"
+			__logging $LOG
 		fi
-		exit 130
+		if [ "${configdyndns[EMAILING]}" == "true" ]; then
+			__sendmail "$MSG" "${configdyndns[ADMIN_EMAIL]}"
+		fi
+		exit 131
     fi
-    LOG[FLAG]="error"
-	LOG[MSG]="Check config file [$DYNDNS_UTIL_CFG]"
-	__logging $LOG
-	STATUS=$?
-	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
-		MSG="${LOG[MSG]}"
-		printf "$SEND" "$ATMANAGER_TOOL" "$MSG"
+    MSG="Failed to load tool script utilities configuration"
+	if [ "$TOOL_DBG" == "true" ]; then
+		printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
+	else
+		printf "$SEND" "[$DYNDNS_TOOL]" "$MSG"
 	fi
     exit 129
 }
@@ -112,12 +124,12 @@ function __dyndns() {
 # @brief   Main entry point
 # @param   Value optional help
 # @exitval Script tool atmanger exit with integer value
-#			0   - success operation 
-# 			127 - run as root user
-#			128 - running help
-#			129 - missing config file
-#			130 - missing ddclient tool
-#			131 - process is already running
+#			0   - tool finished with success operation 
+# 			127 - run tool script as root user from cli
+#			128 - failed to load tool script configuration from file
+#			129 - failed to load tool script utilities configuration from file
+#			130 - process is already running
+#			131 - missing external tool ssclient
 #
 printf "\n%s\n%s\n\n" "$DYNDNS_TOOL $DYNDNS_VERSION" "`date`"
 __checkroot
@@ -129,3 +141,4 @@ if [ "$STATUS" -eq "$SUCCESS" ]; then
 fi
 
 exit 127
+
