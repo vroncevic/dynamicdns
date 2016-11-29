@@ -11,14 +11,14 @@ UTIL_VERSION=ver.1.0
 UTIL=$UTIL_ROOT/sh-util-srv/$UTIL_VERSION
 UTIL_LOG=$UTIL/log
 
+. $UTIL/bin/devel.sh
+. $UTIL/bin/usage.sh
 . $UTIL/bin/checkroot.sh
 . $UTIL/bin/checktool.sh
-. $UTIL/bin/checkprocess.sh
-. $UTIL/bin/loadutilconf.sh
 . $UTIL/bin/logging.sh
 . $UTIL/bin/sendmail.sh
-. $UTIL/bin/usage.sh
-. $UTIL/bin/devel.sh
+. $UTIL/bin/checkprocess.sh
+. $UTIL/bin/loadutilconf.sh
 
 DYNDNS_TOOL=dyndns
 DYNDNS_VERSION=ver.1.0
@@ -28,16 +28,22 @@ DYNDNS_UTIL_CFG=$DYNDNS_HOME/conf/${DYNDNS_TOOL}_util.cfg
 DYNDNS_LOG=$DYNDNS_HOME/log
 
 declare -A DYNDNS_USAGE=(
-    [TOOL_NAME]="__$DYNDNS_TOOL"
-    [EX-PRE]="# Start dynamic dns client"
-    [EX]="__$DYNDNS_TOOL"
+    [USAGE_TOOL]="__$DYNDNS_TOOL"
+    [USAGE_EX_PRE]="# Start dynamic dns client"
+    [USAGE_EX]="__$DYNDNS_TOOL"
 )
 
-declare -A LOG=(
-    [NAME]="$DYNDNS_TOOL"
-    [FLAG]="info"
-    [PATH]="$DYNDNS_LOG"
-    [MSG]="Started $DYNDNS_TOOL"
+declare -A DYNDNS_LOG=(
+    [LOG_NAME]="$DYNDNS_TOOL"
+    [LOG_FLAG]="info"
+    [LOG_PATH]="$DYNDNS_LOG"
+    [LOG_MSGE]="Started $DYNDNS_TOOL"
+)
+
+declare -A PB_STRUCTURE=(
+	[BAR_WIDTH]=50
+	[MAX_PERCENT]=100
+	[SLEEP]=0.01
 )
 
 TOOL_DBG="false"
@@ -60,11 +66,14 @@ TOOL_DBG="false"
 function __dyndns() {
 	local HELP=$1
 	if [ "$HELP" == "help" ]; then
-		__usage $DYNDNS_USAGE
+		__usage DYNDNS_USAGE
 		exit 0
 	fi
 	local FUNC=${FUNCNAME[0]}
-	local MSG=""
+	local MSG="Loading basic and util configuration"
+	printf "$SEND" "$DYNDNS_TOOL" "$MSG"
+	__progressbar PB_STRUCTURE
+	printf "%s\n\n" ""
 	if [ "$TOOL_DBG" == "true" ]; then
 		MSG="Starting dynamic dns client"
 		printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
@@ -72,26 +81,26 @@ function __dyndns() {
 	declare -A configdyndns=()
 	__loadconf $DYNDNS_CFG configdyndns
 	local STATUS=$?
-	if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
+	if [ $STATUS -eq $NOT_SUCCESS ]; then
 		MSG="Failed to load tool script configuration"
 		if [ "$TOOL_DBG" == "true" ]; then
 			printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
 		else
-			printf "$SEND" "[$DYNDNS_TOOL]" "$MSG"
+			printf "$SEND" "$DYNDNS_TOOL" "$MSG"
 		fi
 		exit 128
 	fi
-	declare -A cfgdydns=()
-	__loadutilconf $DYNDNS_UTIL_CFG cfgdydns
+	declare -A configdyndnsutil=()
+	__loadutilconf $DYNDNS_UTIL_CFG configdyndnsutil
 	STATUS=$?
-	if [ "$STATUS" -eq "$SUCCESS" ]; then
-		__checktool "${cfgdydns[DDCLIENT_PATH]}"
+	if [ $STATUS -eq $SUCCESS ]; then
+		__checktool "${configdyndnsutil[DDCLIENT_PATH]}"
 		STATUS=$?
-		if [ "$STATUS" -eq "$SUCCESS" ]; then
-			__checkprocess "${cfgdydns[DDCLIENT_PATH]}"
+		if [ $STATUS -eq $SUCCESS ]; then
+			__checkprocess "${configdyndnsutil[DDCLIENT_PATH]}"
 			STATUS=$?
-			if [ "$STATUS" -eq "$NOT_SUCCESS" ]; then
-				eval "${cfgdydns[DDCLIENT_PATH]} ${cfgdydns[DDCLIENT_ARGS]}"
+			if [ $STATUS -eq $NOT_SUCCESS ]; then
+				eval "${configdyndnsutil[DDCLIENT_PATH]} ${configdyndnsutil[DDCLIENT_ARGS]}"
 				if [ "$TOOL_DBG" == "true" ]; then
 					printf "$DEND" "$DYNDNS_TOOL" "$FUNC" "Done"
 				fi
@@ -99,11 +108,11 @@ function __dyndns() {
 			fi
 			exit 130
 		fi
-		MSG="Missing external tool ${cfgdydns[DDCLIENT_PATH]}"
+		MSG="Missing external tool ${configdyndnsutil[DDCLIENT_PATH]}"
 		if [ "${configdyndns[LOGGING]}" == "true" ]; then
-			LOG[MSG]=$MSG
-			LOG[FLAG]="error"
-			__logging $LOG
+			DYNDNS_LOG[LOG_MSGE]=$MSG
+			DYNDNS_LOG[LOG_FLAG]="error"
+			__logging DYNDNS_LOG
 		fi
 		if [ "${configdyndns[EMAILING]}" == "true" ]; then
 			__sendmail "$MSG" "${configdyndns[ADMIN_EMAIL]}"
@@ -114,7 +123,7 @@ function __dyndns() {
 	if [ "$TOOL_DBG" == "true" ]; then
 		printf "$DSTA" "$DYNDNS_TOOL" "$FUNC" "$MSG"
 	else
-		printf "$SEND" "[$DYNDNS_TOOL]" "$MSG"
+		printf "$SEND" "$DYNDNS_TOOL" "$MSG"
 	fi
     exit 129
 }
@@ -134,10 +143,8 @@ function __dyndns() {
 printf "\n%s\n%s\n\n" "$DYNDNS_TOOL $DYNDNS_VERSION" "`date`"
 __checkroot
 STATUS=$?
-if [ "$STATUS" -eq "$SUCCESS" ]; then
-	set -u
-	HELP=${1:-}
-	__dyndns "$HELP"
+if [ $STATUS -eq $SUCCESS ]; then
+	__dyndns $1
 fi
 
 exit 127
