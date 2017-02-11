@@ -63,7 +63,7 @@ TOOL_NOTIFY="false"
 # @usage
 # @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
-# __dyndns "$HELP"
+# __dyndns "help"
 #
 function __dyndns() {
 	local HELP=$1
