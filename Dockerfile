@@ -15,4 +15,32 @@
 
 FROM debian:10
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends ddclient tree htop
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends \
+ tree \
+ htop \
+ wget \
+ unzip \
+ ca-certificates \
+ openssl \
+ ddclient
+
+RUN wget https://github.com/vroncevic/sh_util/archive/v1.0.0.zip
+RUN unzip v1.0.0.zip
+RUN find /sh_util-1.0.0/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
+RUN mkdir -p /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0.0/sh_tool/bin/   /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0.0/sh_tool/conf/  /root/scripts/sh_util/ver.1.0/
+RUN cp -R /sh_util-1.0.0/sh_tool/log/   /root/scripts/sh_util/ver.1.0/
+RUN rm -Rf v1.0.0.zip sh_util-1.0.0
+RUN mkdir /sh_tool/
+COPY sh_tool /sh_tool/
+RUN find /sh_tool/ -name "*.editorconfig" -type f -exec rm -Rf {} \;
+RUN mkdir -p /root/scripts/dyndns/ver.1.0/
+RUN mkdir /root/bin/
+RUN cp -R /sh_tool/bin/   /root/scripts/dyndns/ver.1.0/
+RUN cp -R /sh_tool/conf/  /root/scripts/dyndns/ver.1.0/
+RUN cp -R /sh_tool/log/   /root/scripts/dyndns/ver.1.0/
+RUN rm -Rf /sh_tool/
+RUN chmod -R 755 /root/scripts/dyndns/ver.1.0/
+RUN ln -s /root/scripts/dyndns/ver.1.0/bin/dyndns.sh /root/bin/dyndns
+RUN tree /root/scripts/dyndns/ver.1.0/
