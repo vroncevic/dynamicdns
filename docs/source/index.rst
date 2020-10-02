@@ -60,7 +60,7 @@ Dependencies
 **dyndns** requires next modules and libraries:
     sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
-SHELL TOOL STRUCTURE
+Shell tool structure
 ---------------------
 
 **dyndns** is based on MOP.
