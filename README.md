@@ -4,6 +4,8 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
+[![dyndns shell checker](https://github.com/vroncevic/dyndns/workflows/dyndns%20shell%20checker/badge.svg)](https://github.com/vroncevic/dyndns/actions?query=workflow%3A%22dyndns+shell+checker%22)
+
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.
@@ -41,6 +43,8 @@ cp -R ~/sh_tool/log/   /root/scripts/dyndns/ver.1.0/
 
 Or You can use docker to create image/container.
 
+[![dyndns docker checker](https://github.com/vroncevic/dyndns/workflows/dyndns%20docker%20checker/badge.svg)](https://github.com/vroncevic/dyndns/actions?query=workflow%3A%22dyndns+docker+checker%22)
+
 ### Usage
 
 ```
@@ -77,7 +81,7 @@ Code structure:
 
 ### Docs
 
-[![Documentation Status](https://readthedocs.org/projects/dyndns/badge/?version=latest)](https://dyndns.readthedocs.io/projects/dyndns/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/dyn-dns/badge/?version=latest)](https://dyn-dns.readthedocs.io/projects/dyn-dns/en/latest/?badge=latest)
 
 More documentation and info at:
 * [https://dyn-dns.readthedocs.io/en/latest/](https://dyn-dns.readthedocs.io/en/latest/)
