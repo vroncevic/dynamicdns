@@ -1,9 +1,9 @@
 #!/bin/bash
 #
 # @brief   Start Dynamic DNS Client
-# @version ver.1.0.0
-# @date    Mon Jun 02 13:36:32 2015
-# @company Frobas IT Department, www.frobas.com 2015
+# @version ver.1.0
+# @date    Mon Jun 02 13:36:32 2016
+# @company Frobas IT Department, www.frobas.com 2016
 # @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
 #
 UTIL_ROOT=/root/scripts
@@ -21,24 +21,24 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/progress_bar.sh
 .    ${UTIL}/bin/check_process.sh
 
-DYNDNS_TOOL=dyndns
-DYNDNS_VERSION=ver.1.0
-DYNDNS_HOME=${UTIL_ROOT}/${DYNDNS_TOOL}/${DYNDNS_VERSION}
-DYNDNS_CFG=${DYNDNS_HOME}/conf/${DYNDNS_TOOL}.cfg
-DYNDNS_UTIL_CFG=${DYNDNS_HOME}/conf/${DYNDNS_TOOL}_util.cfg
-DYNDNS_LOG=${DYNDNS_HOME}/log
+DYNAMICDNS_TOOL=dynamicdns
+DYNAMICDNS_VERSION=ver.1.0
+DYNAMICDNS_HOME=${UTIL_ROOT}/${DYNAMICDNS_TOOL}/${DYNAMICDNS_VERSION}
+DYNAMICDNS_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}.cfg
+DYNAMICDNS_UTIL_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}_util.cfg
+DYNAMICDNS_LOG=${DYNAMICDNS_HOME}/log
 
-declare -A DYNDNS_USAGE=(
-    [USAGE_TOOL]="${DYNDNS_TOOL}"
+declare -A DYNAMICDNS_USAGE=(
+    [USAGE_TOOL]="${DYNAMICDNS_TOOL}"
     [USAGE_EX_PRE]="# Start dynamic dns client"
-    [USAGE_EX]="${DYNDNS_TOOL}"
+    [USAGE_EX]="${DYNAMICDNS_TOOL}"
 )
 
-declare -A DYNDNS_LOGGING=(
-    [LOG_NAME]="${DYNDNS_TOOL}"
+declare -A DYNAMICDNS_LOGGING=(
+    [LOG_NAME]="${DYNAMICDNS_TOOL}"
     [LOG_FLAG]="info"
-    [LOG_PATH]="${DYNDNS_LOG}"
-    [LOG_MSGE]="Started ${DYNDNS_TOOL}"
+    [LOG_PATH]="${DYNAMICDNS_LOG}"
+    [LOG_MSGE]="Started ${DYNAMICDNS_TOOL}"
 )
 
 declare -A PB_STRUCTURE=(
@@ -68,18 +68,18 @@ TOOL_NOTIFY="false"
 function __dyndns {
     local HELP=$1
     if [ "${HELP}" == "help" ]; then
-        usage DYNDNS_USAGE
+        usage DYNAMICDNS_USAGE
         exit 0
     fi
     local FUNC=${FUNCNAME[0]} MSG="None" STATUS_CONF STATUS_CONF_UTIL STATUS
     MSG="Loading basic and util configuration!"
-    info_debug_message "$MSG" "$FUNC" "$DYNDNS_TOOL"
+    info_debug_message "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
     progress_bar PB_STRUCTURE
     declare -A config_dyndns=()
-    load_conf "$DYNDNS_CFG" config_dyndns
+    load_conf "$DYNAMICDNS_CFG" config_dyndns
     STATUS_CONF=$?
     declare -A config_dyndns_util=()
-    load_util_conf "$DYNDNS_UTIL_CFG" config_dyndns_util
+    load_util_conf "$DYNAMICDNS_UTIL_CFG" config_dyndns_util
     STATUS_CONF_UTIL=$?
     declare -A STATUS_STRUCTURE=(
         [1]=$STATUS_CONF [2]=$STATUS_CONF_UTIL
@@ -88,7 +88,7 @@ function __dyndns {
     STATUS=$?
     if [ $STATUS -eq $NOT_SUCCESS ]; then
         MSG="Force exit!"
-        info_debug_message_end "$MSG" "$FUNC" "$DYNDNS_TOOL"
+        info_debug_message_end "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
         exit 128
     fi
     TOOL_LOG=${config_dyndns[LOGGING]}
@@ -102,20 +102,20 @@ function __dyndns {
         STATUS=$?
         if [ $STATUS -eq $NOT_SUCCESS ]; then
             eval "${DDC} ${config_dyndns_util[DDCLIENT_ARGS]}"
-            info_debug_message_end "Done" "$FUNC" "$DYNDNS_TOOL"
+            info_debug_message_end "Done" "$FUNC" "$DYNAMICDNS_TOOL"
             exit 0
         fi
         MSG="Force exit!"
-        info_debug_message_end "$MSG" "$FUNC" "$DYNDNS_TOOL"
+        info_debug_message_end "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
         exit 130
     fi
     MSG="Missing tool ${DDC}"
-    DYNDNS_LOGGING[LOG_MSGE]=$MSG
-    DYNDNS_LOGGING[LOG_FLAG]="error"
-    logging DYNDNS_LOGGING
-    sendmail "$MSG" "${configdyndns[ADMIN_EMAIL]}"
+    DYNAMICDNS_LOGGING[LOG_MSGE]=$MSG
+    DYNAMICDNS_LOGGING[LOG_FLAG]="error"
+    logging DYNAMICDNS_LOGGING
+    sendmail "$MSG" "${config_dyndns[ADMIN_EMAIL]}"
     MSG="Force exit!"
-    info_debug_message_end "$MSG" "$FUNC" "$DYNDNS_TOOL"
+    info_debug_message_end "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
     exit 129
 }
 
@@ -130,7 +130,7 @@ function __dyndns {
 #            129 - missing external tool ddclient
 #            130 - process is already running
 #
-printf "\n%s\n%s\n\n" "${DYNDNS_TOOL} ${DYNDNS_VERSION}" "`date`"
+printf "\n%s\n%s\n\n" "${DYNAMICDNS_TOOL} ${DYNAMICDNS_VERSION}" "`date`"
 check_root
 STATUS=$?
 if [ $STATUS -eq $SUCCESS ]; then

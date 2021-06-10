@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: "[dyndns]"
+title: "[dynamicdns]"
 labels: enhancement
 assignees: vroncevic
 

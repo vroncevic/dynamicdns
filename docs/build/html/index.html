@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>dyndns &mdash; dyndns https://github.com/vroncevic/dyndns/releases documentation</title>
+  <title>dynamicdns &mdash; dynamicdns https://github.com/vroncevic/dynamicdns/releases documentation</title>
   
 
   
@@ -49,7 +49,7 @@
           
 
           
-            <a href="#" class="icon icon-home" alt="Documentation Home"> dyndns
+            <a href="#" class="icon icon-home" alt="Documentation Home"> dynamicdns
           
 
           
@@ -57,6 +57,10 @@
 
           
             
+            
+              <div class="version">
+                1.0
+              </div>
             
           
 
@@ -81,7 +85,7 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">dyndns</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dynamicdns</a></li>
 </ul>
 
             
@@ -97,7 +101,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">dyndns</a>
+          <a href="#">dynamicdns</a>
         
       </nav>
 
@@ -128,7 +132,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>dyndns</li>
+      <li>dynamicdns</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -147,63 +151,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="dyndns">
-<h1>dyndns<a class="headerlink" href="#dyndns" title="Permalink to this headline">¶</a></h1>
-<p><strong>dyndns</strong> is shell tool for control/operating <a class="reference external" href="https://help.dyn.com/ddclient/">ddclient</a>.</p>
+  <div class="section" id="dynamicdns">
+<h1>dynamicdns<a class="headerlink" href="#dynamicdns" title="Permalink to this headline">¶</a></h1>
+<p><strong>dynamicdns</strong> is shell tool for control/operating <a class="reference external" href="https://help.dyn.com/ddclient/">ddclient</a>.</p>
 <p>Developed in <a class="reference external" href="https://en.wikipedia.org/wiki/Bash_(Unix_shell)">bash</a> code: <strong>100%</strong>.</p>
-<p><a class="reference external" href="https://github.com/vroncevic/dyndns/actions?query=workflow%3A%22dyndns+shell+checker%22"><img alt="GitHub shell checker" src="https://github.com/vroncevic/dyndns/workflows/dyndns%20shell%20checker/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/vroncevic/dynamicdns/actions?query=workflow%3A%22dynamicdns+shell+checker%22"><img alt="GitHub shell checker" src="https://github.com/vroncevic/dynamicdns/workflows/dynamicdns%20shell%20checker/badge.svg" /></a></p>
 <p>The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
 other information that should be provided before the tool is installed.</p>
-<p><a class="reference external" href="https://github.com/vroncevic/dyndns/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/dyndns.svg" /></a> <a class="reference external" href="https://dyn-dns.readthedocs.io/projects/dyn-dns/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/dyn-dns/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/dyndns/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/dyndns.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/vroncevic/dynamicdns/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/vroncevic/dynamicdns.svg" /></a> <a class="reference external" href="https://dyn-dns.readthedocs.io/projects/dyn-dns/en/latest/?badge=latest"><img alt="Documentation Status" src="https://readthedocs.org/projects/dyn-dns/badge/?version=latest" /></a> <a class="reference external" href="https://github.com/vroncevic/dynamicdns/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/vroncevic/dynamicdns.svg" /></a></p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
 <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/dyndns/releases">page</a> download and extract release archive.</p>
-<p>To install <strong>dyndns</strong> type the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf dyndns-x.y.z.tar.gz
-<span class="nb">cd</span> dyndns-x.y.z
-cp -R ~/sh_tool/bin/   /root/scripts/dyndns/ver.1.0/
-cp -R ~/sh_tool/conf/  /root/scripts/dyndns/ver.1.0/
-cp -R ~/sh_tool/log/   /root/scripts/dyndns/ver.1.0/
+<p>Navigate to release <a class="reference external" href="https://github.com/vroncevic/dynamicdns/releases">page</a> download and extract release archive.</p>
+<p>To install <strong>dynamicdns</strong> type the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar xvzf dynamicdns-x.y.tar.gz
+<span class="nb">cd</span> dynamicdns-x.y
+cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.x.y/
+cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.x.y/
+cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.x.y/
 </pre></div>
 </div>
 <p>Or You can use Docker to create image/container.</p>
-<p><a class="reference external" href="https://github.com/vroncevic/dyndns/actions?query=workflow%3A%22dyndns+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/dyndns/workflows/dyndns%20docker%20checker/badge.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/vroncevic/dynamicdns/actions?query=workflow%3A%22dynamicdns+docker+checker%22"><img alt="GitHub docker checker" src="https://github.com/vroncevic/dynamicdns/workflows/dynamicdns%20docker%20checker/badge.svg" /></a></p>
 </div>
 <div class="section" id="dependencies">
 <h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
-<p><strong>dyndns</strong> requires next modules and libraries:</p>
+<p><strong>dynamicdns</strong> requires next modules and libraries:</p>
 <ul class="simple">
 <li>sh_util <a class="reference external" href="https://github.com/vroncevic/sh_util">https://github.com/vroncevic/sh_util</a></li>
 </ul>
 </div>
 <div class="section" id="shell-tool-structure">
 <h1>Shell tool structure<a class="headerlink" href="#shell-tool-structure" title="Permalink to this headline">¶</a></h1>
-<p><strong>dyndns</strong> is based on MOP.</p>
+<p><strong>dynamicdns</strong> is based on MOP.</p>
 <p>Code structure:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sh_tool/
 ├── bin/
-│   └── dyndns.sh
+│   └── dynamicdns.sh
 ├── conf/
-│   ├── dyndns.cfg
-│   └── dyndns_util.cfg
+│   ├── dynamicdns.cfg
+│   └── dynamicdns_util.cfg
 └── log/
-    └── dyndns.log
+    └── dynamicdns.log
 </pre></div>
 </div>
 </div>
 <div class="section" id="copyright-and-licence">
 <h1>Copyright and licence<a class="headerlink" href="#copyright-and-licence" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0"><img alt="License: GPL v3" src="https://img.shields.io/badge/License-GPLv3-blue.svg" /></a> <a class="reference external" href="https://opensource.org/licenses/Apache-2.0"><img alt="License: Apache 2.0" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a></p>
-<p>Copyright (C) 2015 by <a class="reference external" href="https://vroncevic.github.io/dyndns">vroncevic.github.io/dyndns</a></p>
-<p><strong>dyndns</strong> is free software; you can redistribute it and/or modify it
+<p>Copyright (C) 2016 by <a class="reference external" href="https://vroncevic.github.io/dynamicdns">vroncevic.github.io/dynamicdns</a></p>
+<p><strong>dynamicdns</strong> is free software; you can redistribute it and/or modify it
 under the same terms as Bash itself, either Bash version 4.2.47 or,
 at your option, any later version of Bash 4 you may have available.</p>
 <p>Lets help and support FSF.</p>
-<p><a class="reference external" href="https://my.fsf.org/"><img alt="Free Software Foundation" src="https://raw.githubusercontent.com/vroncevic/dyndns/dev/docs/fsf-logo_1.png" /></a></p>
+<p><a class="reference external" href="https://my.fsf.org/"><img alt="Free Software Foundation" src="https://raw.githubusercontent.com/vroncevic/dynamicdns/dev/docs/fsf-logo_1.png" /></a></p>
 <p><a class="reference external" href="https://my.fsf.org/donate/"><img alt="Donate" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" /></a></p>
 </div>
 <div class="section" id="indices-and-tables">
@@ -227,7 +231,7 @@ at your option, any later version of Bash 4 you may have available.</p>
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2020, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
+        &copy; Copyright 2016, Vladimir Roncevic &lt;elektron.ronca@gmail.com&gt;
 
     </p>
   </div>
