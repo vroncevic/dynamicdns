@@ -1,3 +1,5 @@
+<img align="right" src="https://raw.githubusercontent.com/vroncevic/dynamicdns/dev/docs/dynamicdns_logo.png" width="25%">
+
 # Dynamic DNS
 
 **dynamicdns** is shell tool for control/operating **[ddclient](https://help.dyn.com/ddclient/)**.
