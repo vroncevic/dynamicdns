@@ -33,11 +33,16 @@ other information that should be provided before the tool is installed.
 Installation
 -------------
 
+|Debian Linux OS|
+
+.. |Debian Linux OS| image:: https://raw.githubusercontent.com/vroncevic/dynamicdns/dev/docs/debtux.png
+   :target: https://www.debian.org
+
 Navigate to release `page`_ download and extract release archive.
 
 .. _page: https://github.com/vroncevic/dynamicdns/releases
 
-To install **dynamicdns** type the following:
+To install **dynamicdns** type the following
 
 .. code-block:: bash
 
@@ -57,7 +62,7 @@ Or You can use Docker to create image/container.
 Dependencies
 -------------
 
-**dynamicdns** requires next modules and libraries:
+**dynamicdns** requires next modules and libraries
 
 * sh_util `https://github.com/vroncevic/sh_util <https://github.com/vroncevic/sh_util>`_
 
@@ -66,16 +71,19 @@ Shell tool structure
 
 **dynamicdns** is based on MOP.
 
-Code structure:
+Shell tool structure
 
 .. code-block:: bash
 
    sh_tool/
    ├── bin/
-   │   └── dynamicdns.sh
+   │   ├── center.sh
+   │   ├── display_logo.sh
+   │   └── dynamicdns.sh
    ├── conf/
-   │   ├── dynamicdns.cfg
-   │   └── dynamicdns_util.cfg
+   │   ├── dynamicdns.cfg
+   │   ├── dynamicdns.logo
+   │   └── dynamicdns_util.cfg
    └── log/
        └── dynamicdns.log
 

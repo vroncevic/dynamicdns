@@ -29,9 +29,11 @@ other information that should be provided before the tool is installed.
 
 ### Installation
 
+![Debian Linux OS](https://raw.githubusercontent.com/vroncevic/dynamicdns/dev/docs/debtux.png)
+
 Navigate to release **[page](https://github.com/vroncevic/dynamicdns/releases)** download and extract release archive.
 
-To install **dynamicdns** type the following:
+To install **dynamicdns** type the following
 
 ```
 tar xvzf dynamicdns-x.y.tar.gz
@@ -41,7 +43,34 @@ cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.x.y/
 cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.x.y/
 ```
 
-![alt tag](https://raw.githubusercontent.com/vroncevic/dynamicdns/dev/docs/setup_tree.png)
+Self generated setup script and execution
+```
+./dynamicdns_setup.sh
+
+[setup] installing App/Tool/Script dynamicdns
+	Mon 22 Nov 2021 12:41:00 AM CET
+[setup] clean up App/Tool/Script structure
+[setup] copy App/Tool/Script structure
+[setup] remove github editor configuration files
+[setup] set App/Tool/Script permission
+[setup] create symbolic link of App/Tool/Script
+[setup] done
+
+/root/scripts/dynamicdns/ver.2.0/
+├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
+│   └── dynamicdns.sh
+├── conf/
+│   ├── dynamicdns.cfg
+│   ├── dynamicdns.logo
+│   └── dynamicdns_util.cfg
+└── log/
+    └── dynamicdns.log
+
+3 directories, 7 files
+lrwxrwxrwx 1 root root 50 Nov 22 00:41 /root/bin/dynamicdns -> /root/scripts/dynamicdns/ver.2.0/bin/dynamicdns.sh
+```
 
 Or You can use docker to create image/container.
 
@@ -57,25 +86,52 @@ ln -s /root/scripts/dynamicdns/ver.x.y/bin/dynamicdns.sh /root/bin/dynamicdns
 export PATH=${PATH}:/root/bin/
 
 # Start dynamic dns client
-dynamicdns
+dynamicdns help
+
+dynamicdns ver.2.0
+Sun 05 Dec 2021 01:02:59 PM CET
+
+[check_root] Check permission for current session? [ok]
+[check_root] Done
+
+	                                                         
+	     _                             _         _           
+	  __| |_   _ _ __   __ _ _ __ ___ (_) ___ __| |_ __  ___ 
+	 / _` | | | | '_ \ / _` | '_ ` _ \| |/ __/ _` | '_ \/ __|
+	| (_| | |_| | | | | (_| | | | | | | | (_| (_| | | | \__ \
+	 \__,_|\__, |_| |_|\__,_|_| |_| |_|_|\___\__,_|_| |_|___/
+	       |___/                                             
+	                                                         
+		Info   github.io/dynamicdns ver.2.0
+		Issue  github.io/issue
+		Author vroncevic.github.io
+
+  [USAGE] dynamicdns [OPTIONS]
+  [OPTIONS]
+  # Start dynamic dns client
+  dynamicdns
+  [help | h] print this option
 ```
 
 ### Dependencies
 
-**dynamicdns** requires next modules and libraries:
+**dynamicdns** requires next modules and libraries
 * sh_util [https://github.com/vroncevic/sh_util](https://github.com/vroncevic/sh_util)
 
 ### Shell tool structure
 
 **dynamicdns** is based on MOP.
 
-Code structure:
+Shell tool structure
 ```
 sh_tool/
 ├── bin/
+│   ├── center.sh
+│   ├── display_logo.sh
 │   └── dynamicdns.sh
 ├── conf/
 │   ├── dynamicdns.cfg
+│   ├── dynamicdns.logo
 │   └── dynamicdns_util.cfg
 └── log/
     └── dynamicdns.log
@@ -85,7 +141,7 @@ sh_tool/
 
 [![Documentation Status](https://readthedocs.org/projects/dyn-dns/badge/?version=latest)](https://dyn-dns.readthedocs.io/projects/dyn-dns/en/latest/?badge=latest)
 
-More documentation and info at:
+More documentation and info at
 * [https://dyn-dns.readthedocs.io/en/latest/](https://dyn-dns.readthedocs.io/en/latest/)
 * [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)
 * [https://manpages.debian.org/stretch/ddclient](https://manpages.debian.org/stretch/ddclient/ddclient.8.en.html)
