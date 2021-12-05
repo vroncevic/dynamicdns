@@ -1,10 +1,10 @@
 #!/bin/bash
 #
 # @brief   Start Dynamic DNS Client
-# @version ver.1.0
-# @date    Mon Jun 02 13:36:32 2016
-# @company Frobas IT Department, www.frobas.com 2016
-# @author  Vladimir Roncevic <vladimir.roncevic@frobas.com>
+# @version ver.2.0
+# @date    Mon 22 Nov 2021 12:24:35 AM CET
+# @company None, free software to use 2021
+# @author  Vladimir Roncevic <elektron.ronca@gmail.com>
 #
 UTIL_ROOT=/root/scripts
 UTIL_VERSION=ver.1.0
@@ -22,11 +22,18 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/check_process.sh
 
 DYNAMICDNS_TOOL=dynamicdns
-DYNAMICDNS_VERSION=ver.1.0
+DYNAMICDNS_VERSION=ver.2.0
 DYNAMICDNS_HOME=${UTIL_ROOT}/${DYNAMICDNS_TOOL}/${DYNAMICDNS_VERSION}
 DYNAMICDNS_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}.cfg
 DYNAMICDNS_UTIL_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}_util.cfg
+DYNAMICDNS_LOGO=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}.logo
 DYNAMICDNS_LOG=${DYNAMICDNS_HOME}/log
+
+tabs 4
+CONSOLE_WIDTH=$(stty size | awk '{print $2}')
+
+.    ${DYNAMICDNS_HOME}/bin/center.sh
+.    ${DYNAMICDNS_HOME}/bin/display_logo.sh
 
 declare -A DYNAMICDNS_USAGE=(
     [USAGE_TOOL]="${DYNAMICDNS_TOOL}"
@@ -61,12 +68,13 @@ TOOL_NOTIFY="false"
 #            130 - process is already running
 #
 # @usage
-# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 #
 # __dyndns "help"
 #
 function __dyndns {
     local HELP=$1
+    display_logo
     if [ "${HELP}" == "help" ]; then
         usage DYNAMICDNS_USAGE
         exit 0
@@ -138,4 +146,3 @@ if [ $STATUS -eq $SUCCESS ]; then
 fi
 
 exit 127
-
