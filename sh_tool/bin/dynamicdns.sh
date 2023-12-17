@@ -74,11 +74,11 @@ TOOL_NOTIFY="false"
 #
 function __dyndns {
     local HELP=$1
-    display_logo
     if [ "${HELP}" == "help" ]; then
         usage DYNAMICDNS_USAGE
         exit 0
     fi
+    display_logo
     local FUNC=${FUNCNAME[0]} MSG="None" STATUS_CONF STATUS_CONF_UTIL STATUS
     MSG="Loading basic and util configuration!"
     info_debug_message "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
