@@ -6,7 +6,7 @@
 
 Developed in **[bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))** code: **100%**.
 
-[![dynamicdns shell checker](https://github.com/vroncevic/dynamicdns/workflows/dynamicdns%20shell%20checker/badge.svg)](https://github.com/vroncevic/dynamicdns/actions?query=workflow%3A%22dynamicdns+shell+checker%22)
+[![dynamicdns_shell_checker](https://github.com/vroncevic/dynamicdns/actions/workflows/dynamicdns_shell_checker.yml/badge.svg)](https://github.com/vroncevic/dynamicdns/actions/workflows/dynamicdns_shell_checker.yml)
 
 The README is used to introduce the tool and provide instructions on
 how to install the tool, any machine dependencies it may have and any
@@ -45,7 +45,7 @@ cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.x.y/
 
 Self generated setup script and execution
 ```
-./dynamicdns_setup.sh
+./dynamicdns_setup.sh 
 
 [setup] installing App/Tool/Script dynamicdns
 	Mon 22 Nov 2021 12:41:00 AM CET
@@ -74,8 +74,6 @@ lrwxrwxrwx 1 root root 50 Nov 22 00:41 /root/bin/dynamicdns -> /root/scripts/dyn
 
 Or You can use docker to create image/container.
 
-[![dynamicdns docker checker](https://github.com/vroncevic/dynamicdns/workflows/dynamicdns%20docker%20checker/badge.svg)](https://github.com/vroncevic/dynamicdns/actions?query=workflow%3A%22dynamicdns+docker+checker%22)
-
 ### Usage
 
 ```
@@ -86,31 +84,7 @@ ln -s /root/scripts/dynamicdns/ver.x.y/bin/dynamicdns.sh /root/bin/dynamicdns
 export PATH=${PATH}:/root/bin/
 
 # Start dynamic dns client
-dynamicdns help
-
-dynamicdns ver.2.0
-Sun 05 Dec 2021 01:02:59 PM CET
-
-[check_root] Check permission for current session? [ok]
-[check_root] Done
-
-	                                                         
-	     _                             _         _           
-	  __| |_   _ _ __   __ _ _ __ ___ (_) ___ __| |_ __  ___ 
-	 / _` | | | | '_ \ / _` | '_ ` _ \| |/ __/ _` | '_ \/ __|
-	| (_| | |_| | | | | (_| | | | | | | | (_| (_| | | | \__ \
-	 \__,_|\__, |_| |_|\__,_|_| |_| |_|_|\___\__,_|_| |_|___/
-	       |___/                                             
-	                                                         
-		Info   github.io/dynamicdns ver.2.0
-		Issue  github.io/issue
-		Author vroncevic.github.io
-
-  [USAGE] dynamicdns [OPTIONS]
-  [OPTIONS]
-  # Start dynamic dns client
-  dynamicdns
-  [help | h] print this option
+dynamicdns
 ```
 
 ### Dependencies
@@ -150,7 +124,7 @@ More documentation and info at
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Copyright (C) 2016 by [vroncevic.github.io/dynamicdns](https://vroncevic.github.io/dynamicdns)
+Copyright (C) 2016 - 2024 by [vroncevic.github.io/dynamicdns](https://vroncevic.github.io/dynamicdns)
 
 **dynamicdns** is free software; you can redistribute it and/or modify
 it under the same terms as Bash itself, either Bash version 4.2.47 or,
