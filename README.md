@@ -36,11 +36,11 @@ Navigate to release **[page](https://github.com/vroncevic/dynamicdns/releases)**
 To install **dynamicdns** type the following
 
 ```bash
-tar xvzf dynamicdns-3.0.tar.gz
-cd dynamicdns-3.0
-cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.3.0/
-cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.3.0/
-cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.3.0/
+tar xvzf dynamicdns-4.0.tar.gz
+cd dynamicdns-4.0
+cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.4.0/
+cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.4.0/
+cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.4.0/
 ```
 
 Self generated setup script and execution
@@ -57,7 +57,7 @@ Self generated setup script and execution
 [setup] create symbolic link of App/Tool/Script
 [setup] done
 
-/root/scripts/dynamicdns/ver.3.0/
+/root/scripts/dynamicdns/ver.4.0/
 ├── bin/
 │   └── dynamicdns.sh
 ├── conf/
@@ -68,7 +68,7 @@ Self generated setup script and execution
     └── dynamicdns.log
 
 4 directories, 5 files
-lrwxrwxrwx 1 root root 50 Dec  2 22:19 /root/bin/dynamicdns -> /root/scripts/dynamicdns/ver.3.0/bin/dynamicdns.sh
+lrwxrwxrwx 1 root root 50 Dec  2 22:19 /root/bin/dynamicdns -> /root/scripts/dynamicdns/ver.4.0/bin/dynamicdns.sh
 
 ```
 
@@ -78,7 +78,7 @@ Or You can use docker to create image/container.
 
 ```bash
 # Create symlink for shell tool
-ln -s /root/scripts/dynamicdns/ver.3.0/bin/dynamicdns.sh /root/bin/dynamicdns
+ln -s /root/scripts/dynamicdns/ver.4.0/bin/dynamicdns.sh /root/bin/dynamicdns
 
 # Setting PATH
 export PATH=${PATH}:/root/bin/
@@ -121,7 +121,7 @@ More documentation and info at
 
 ### Copyright and licence
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-4.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2016 - 2026 by [vroncevic.github.io/dynamicdns](https://vroncevic.github.io/dynamicdns)
 

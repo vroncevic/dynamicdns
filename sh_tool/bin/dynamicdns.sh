@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # @brief   Start Dynamic DNS Client
-# @version ver.3.0
+# @version ver.4.0
 # @date    Mon 22 Nov 2021 12:24:35 AM CET
 # @company None, free software to use 2021
 # @author  Vladimir Roncevic <elektron.ronca@gmail.com>
@@ -11,8 +11,6 @@ UTIL_VERSION=ver.1.0
 UTIL=${UTIL_ROOT}/sh_util/${UTIL_VERSION}
 UTIL_LOG=${UTIL}/log
 
-.    ${UTIL}/bin/devel.sh
-.    ${UTIL}/bin/usage.sh
 .    ${UTIL}/bin/check_root.sh
 .    ${UTIL}/bin/check_tool.sh
 .    ${UTIL}/bin/logging.sh
@@ -23,7 +21,7 @@ UTIL_LOG=${UTIL}/log
 .    ${UTIL}/bin/display_logo.sh
 
 DYNAMICDNS_TOOL=dynamicdns
-DYNAMICDNS_VERSION=ver.3.0
+DYNAMICDNS_VERSION=ver.4.0
 DYNAMICDNS_HOME=${UTIL_ROOT}/${DYNAMICDNS_TOOL}/${DYNAMICDNS_VERSION}
 DYNAMICDNS_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}.cfg
 DYNAMICDNS_UTIL_CFG=${DYNAMICDNS_HOME}/conf/${DYNAMICDNS_TOOL}_util.cfg
@@ -47,6 +45,13 @@ declare -A PB_STRUCTURE=(
     [BW]=50
     [MP]=100
     [SLEEP]=0.01
+)
+
+declare -A DYNAMICDNS_LOGO_DATA=(
+    [OWNER]="vroncevic"
+    [REPO]="${DYNAMICDNS_TOOL}"
+    [VERSION]="${DYNAMICDNS_VERSION}"
+    [LOGO]="${DYNAMICDNS_LOGO}"
 )
 
 TOOL_DBG="false"
@@ -73,7 +78,7 @@ function __dyndns {
         usage DYNAMICDNS_USAGE
         exit 0
     fi
-    display_logo "vroncevic" "${DYNAMICDNS_TOOL}" "${DYNAMICDNS_VERSION}" "${DYNAMICDNS_LOGO}"
+    display_logo DYNAMICDNS_LOGO_DATA
     local FUNC=${FUNCNAME[0]} MSG="None" STATUS_CONF STATUS_CONF_UTIL STATUS
     MSG="Loading basic and util configuration!"
     info_debug_message "$MSG" "$FUNC" "$DYNAMICDNS_TOOL"
