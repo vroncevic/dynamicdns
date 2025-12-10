@@ -36,8 +36,8 @@ Navigate to release **[page](https://github.com/vroncevic/dynamicdns/releases)**
 To install **dynamicdns** type the following
 
 ```bash
-tar xvzf dynamicdns-3.0.tar.gz
-cd dynamicdns-3.0
+tar xvzf dynamicdns-4.0.tar.gz
+cd dynamicdns-4.0
 cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.4.0/
 cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.4.0/
 cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.4.0/
@@ -121,7 +121,7 @@ More documentation and info at
 
 ### Copyright and licence
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-4.0) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Copyright (C) 2016 - 2026 by [vroncevic.github.io/dynamicdns](https://vroncevic.github.io/dynamicdns)
 
