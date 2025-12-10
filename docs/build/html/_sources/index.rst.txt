@@ -43,9 +43,9 @@ To install **dynamicdns** type the following:
 
    tar xvzf dynamicdns-3.0.tar.gz
    cd dynamicdns-3.0
-   cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.3.0/
-   cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.3.0/
-   cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.3.0/
+   cp -R ~/sh_tool/bin/   /root/scripts/dynamicdns/ver.4.0/
+   cp -R ~/sh_tool/conf/  /root/scripts/dynamicdns/ver.4.0/
+   cp -R ~/sh_tool/log/   /root/scripts/dynamicdns/ver.4.0/
 
 Or You can use Docker to create image/container.
 
